@@ -25,7 +25,7 @@ Base URL: /api/v1
 ### /places/:id/groups/:id_group/instances [GET, GET :id, POST, DELETE]
 
 - id
-- component_id
+- nomenclature_id
 - quantity
 - comment
 
