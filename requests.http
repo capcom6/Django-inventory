@@ -1,0 +1,19 @@
+@baseUrl=http://localhost:8000
+
+###
+GET {{baseUrl}}/api/places/ HTTP/1.1
+
+###
+GET {{baseUrl}}/api/places/1/ HTTP/1.1
+
+###
+POST {{baseUrl}}/api/places/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Дача",
+    "address": "Московская область"
+}
+
+###
+DELETE {{baseUrl}}/api/places/3/ HTTP/1.1
