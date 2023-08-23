@@ -7,18 +7,21 @@ class Status(models.TextChoices):
     INACTIVE = "INACTIVE", "Inactive"
 
 
-class TimestampedMixin:
+StatusField = models.CharField(
+    max_length=16, choices=Status.choices, default=Status.ACTIVE
+)
+
+
+class TimestampedModel(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
-
-class StatusMixin:
-    status = models.CharField(
-        max_length=16, choices=Status.choices, default=Status.ACTIVE
-    )
+    class Meta:
+        abstract = True
 
 
-class BaseModel(models.Model, StatusMixin, TimestampedMixin):
+class BaseModel(TimestampedModel):
+    status = StatusField
     name = models.CharField(max_length=128)
 
     def __str__(self):
@@ -50,7 +53,8 @@ class Nomenclature(BaseModel):
     )
 
 
-class NomenclatureInstance(models.Model, StatusMixin, TimestampedMixin):
+class NomenclatureInstance(TimestampedModel):
+    status = StatusField
     nomenclature = models.ForeignKey(Nomenclature, on_delete=models.RESTRICT)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     quantity = models.IntegerField()
