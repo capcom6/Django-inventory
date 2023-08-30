@@ -17,3 +17,17 @@ Content-Type: application/json
 
 ###
 DELETE {{baseUrl}}/api/places/3/ HTTP/1.1
+
+###
+GET {{baseUrl}}/api/places/1/groups/?nomenclature__name=Диван HTTP/1.1
+
+###
+GET {{baseUrl}}/api/places/1/groups/2 HTTP/1.1
+
+###
+POST {{baseUrl}}/api/places/1/groups/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Детская"
+}

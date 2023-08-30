@@ -26,6 +26,11 @@ SECRET_KEY = "django-insecure-xuhmy4zja_m$hpw&miqai5tkb7blcued-^+ula(w+-)1idm$be
 DEBUG = True
 
 ALLOWED_HOSTS = []
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
 
 
 # Application definition
@@ -37,12 +42,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "debug_toolbar",
     "rest_framework",
     "core.apps.CoreConfig",
     "api.apps.ApiConfig",
 ]
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
